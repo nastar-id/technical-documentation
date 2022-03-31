@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #011836;
+  color: #fff;
+  height: 150vh;
+  font-family: 'Roboto', arial, sans-serif;
+}
+
+.container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 25px 10px;
+}
+
+#navbar {
+  position: fixed;
+  background-color: #011836;
+  padding: 25px 0;
+  width: 250px;
+  height: 100%;
+  border-right: 1px solid #fff;
+  float: left;
+}
+
+#title {
+  padding-left: 15px;
+}
+
+#title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-ul {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 300px;
+  margin-top: 10px;
+  background-color: #011836;
+}
+
+.nav-ul .nav-item {
+  list-style: none;
+  border-top: 1px solid #fff;
+}
+
+.nav-ul .nav-link {
+  display: inline-block;
+  width: 100%;
+  padding: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-ul .nav-link.active,
+.nav-ul .nav-link:hover {
+  background-color: #fff;
+  color: #011836;
+}
+
+.main-section {
+  margin-bottom: 20px;
+  margin-left: 200px;
+}
+
+.explanation {
+  margin-top: 20px;
+}
+
+p, .list {
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.list {
+  margin-left: 40px;
+}
+
+pre {
+  margin-top: 20px;
+  background-color: #000;
+  padding: 20px 15px;
+  font-size: 1.1rem;
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 535px) {
+  .container {
+    max-width: 93%;
+    padding: 10px 0;
+  }
+  
+  #navbar {
+    position: inherit;
+    padding: 12px 0;
+    width: 100%;
+    height: 50px;
+    border: none;
+    float: none;
+  }
+  
+  .nav-ul {
+    display: block;
+    height: inherit;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+  
+  #title {
+    padding: 0;
+    text-align: center;
+  }
+  
+  .nav-ul {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+  
+  .nav-ul .nav-item {
+    display: inline-block;
+    border: none;
+  }
+  
+  .nav-ul .nav-link {
+    padding: 15px;
+  }
+  
+  .nav-ul .nav-link.active,
+  .nav-ul .nav-link:hover {
+    background-color: #fff;
+    color: #011836;
+  }
+  
+  .main-section {
+    margin-left: 0;
+  }
+  
+  #main-doc .main-section:nth-child(1) {
+    margin-top: 65px;
+  }
+  
+  p, .list {
+    font-size: 1rem;
+    line-height: 24px;
+  }
+  
+  .list {
+    margin-left: 30px;
+  }
+  
+  pre {
+    font-size: inherit;
+  }
+}

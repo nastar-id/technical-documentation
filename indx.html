@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styl.css">
+    <title>Documentation</title>
+  </head>
+  <body>
+    <nav id="navbar">
+      <header id="title">
+        <a href="#"><h1>PHP Write and Read files</h1></a>
+      </header>
+      <ul class="nav-ul">
+        <li class="nav-item"><a class="nav-link active" href="#Introduction">Introduction</a></li>
+        <li class="nav-item"><a class="nav-link" href="#Write_file">Write file</a></li>
+        <li class="nav-item"><a class="nav-link" href="#Append_to_file">Append to file</a></li>
+        <li class="nav-item"><a class="nav-link" href="#Reading_file">Reading file</a></li>
+        <li class="nav-item"><a class="nav-link" href="#Work_with_html">Work with html</a></li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <div class="container">
+        <section class="main-section" id="Introduction">
+          <header><h2>Introduction</h2></header>
+          <p class="explanation">
+            PHP offers a number of functions to use when creating, reading, uploading, and editing files.
+          </p>
+          <p class="explanation">
+            The fopen() function creates or opens a file. If you use fopen() with a file that does not exist, the file will be created, given that the file has been opened for writing (w) or appending (a).
+          </p>
+          <p class="explanation">Use one of the following modes to open the file.</p>
+          <ul>
+            <li class="list">r: Opens file for read only.</li>
+            <li class="list">w: Opens file for write only. Erases the contents of the file or creates a new file if it doesn't exist.</li>
+            <li class="list">a: Opens file for write only.</li>
+            <li class="list">x: Creates new file for write only.</li>
+            <li class="list">r+: Opens file for read/write.</li>
+            <li class="list">w+: Opens file for read/write. Erases the contents of the file or creates a new file if it doesn't exist.</li>
+            <li class="list">a+: Opens file for read/write. Creates a new file if the file doesn't exist</li>
+            <li class="list">x+: Creates new file for read/write.</li>
+          </ul>
+          <p class="explanation">
+            The example below creates a new file, "file.txt", which will be created in the same directory that houses the PHP code.
+          </p>
+          <code><pre>$myfile = fopen("file.txt", "w");</pre></code>
+        </section>
+        <section class="main-section"  id="Write_file">
+          <header><h2>Write file</h2></header>
+          <p class="explanation">When writing to a file, use the fwrite() function.
+          </p>
+          <p class="explanation">The first parameter of fwrite() is the file to write to; the second parameter is the string to be written.</p>
+          <p class="explanation">The example below writes a couple of names into a new file called "file.txt".</p>
+          <code><pre>
+&lt;?php
+
+  $myfile = fopen("file.txt", "w");
+  $txt = "Naxtarrr\n";
+  fwrite($myfile, $txt);
+  $txt = "N4ST4R_ID\n";
+  fwrite($myfile, $txt);
+  fclose($myfile);
+            
+  /* File contains:
+  Naxtarrr
+  N4ST4R_ID
+  */
+  
+?&gt;</pre></code>
+          <p class="explanation">Notice that we wrote to the file "file.txt" twice, and then we used the fclose() function to close the file. And the \n symbol is for creating new line.</p>
+        </section>
+        <section class="main-section" id="Append_to_file">
+          <header><h2>Append to file</h2></header>
+          <p class="explanation">If you want to append content to a file, you need to open the file in append mode. <strong>For example:</strong></p>
+          <code><pre>
+$myFile = "test.txt";
+
+$fh = fopen($myFile, 'a');
+
+fwrite($fh, "Some text");
+fclose($fh);</pre></code>
+          <p class="explanation">When appending to a file using the 'a' mode, the file pointer is placed at the end of the file, ensuring that all new data is added at the end of the file.</p>
+        </section>
+        <section class="main-section" id="Reading_file">
+          <header><h2>Reading file</h2></header>
+          <p class="explanation">The file() function reads the entire file into an array. Each element within the array corresponds to a line in the file:</p>
+          <code><pre>
+&lt;?php
+
+$read = file('file.txt');
+foreach($read as $line) {
+  echo $line.', ';
+}
+
+?&gt;</pre></code>
+          <p class="explanation">This prints all of the lines in the file, and separates them with commas. We used the foreach loop, because the $read variable is an array.</p>
+          <p class="explanation">At the end of the output in the previous example, we would have a comma, as we print it after each element of the array. The following code lets us avoid printing that final comma.</p>
+          <code><pre>
+&lt;?php
+  
+  $read = file('file.txt');
+  $count = count($read);
+  $i = 1;
+  
+  foreach($read as $line) {
+    echo $line;
+    if($i < $count) {
+      echo ', ';
+    }
+    $i++;
+  }
+
+?&gt;</pre></code>
+          <p class="explanation">The $count variable uses the count function to obtain the number of elements in the $read array.
+          </p>
+          <p class="explanation">Then, in the foreach loop, after each line prints, we determine whether the current line is less than the total number of lines, and print a comma if it is.
+          </p>
+          <p class="explanation">This avoids printing that final comma, as for the last line, $i is equal to $count.</p>
+        </section>
+        <section class="main-section" id="Work_with_html">
+          <header><h2>Work with html</h2></header>
+          <p class="explanation">How do we manipulate files with the html code? We can use textarea tag to input something to file and input with text type to give it a name.
+          </p>
+          <p class="explanation">We also need form tag with method attribute, post value and we need name attribute to define the mame of the input and textarea to send data.</p>
+          <p class="explanation">Here's an example if we want to create file with html and php.</p>
+          <code><pre>
+&lt;form method="POST"&gt;
+  &lt;input type="text" name="file_name" placeholder="Enter file name"&gt;
+  &lt;textarea name="texts"&gt;&lt;textarea&gt;
+  &lt;input type="submit" name="submit"&gt;
+&lt;/form&gt;
+
+&lt;?php
+
+  if(isset($_POST['submit'])) {
+    $name = $_POST['file_name']; // Create a file with any names and extensions user give
+    $text = $_POST['texts']; // Is to write file with anything user write
+    
+    // Create file with given file name and texts
+    $open = fopen($name, 'w');
+    fwrite($open, $text);
+    fclose($open);
+    
+    // Check if file successfully created
+    if(file_exists($name)) {
+      echo 'File successfully created';
+    } else {
+      echo 'Failed to create file';
+    }
+  }
+  
+?&gt;</pre></code>
+          <p class="explanation">The $_POST['']; is 'superglobal', or automatic global, variable. This simply means that it is available in all scopes throughout a script.</p>
+          <p class="explanation">And the value we gave inside the $_POST variable is the value of name attribute we gave in the form.</p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
